@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,10 @@ namespace CookingCraft
         public MainGame()
         {
             InitializeComponent();
+
+            // Set the DataContext of the ListView to the ObservableCollection
+            ObservableCollection<Food> entrys = new ObservableCollection<Food>();
+            ListViewGame.ItemsSource = entrys;
         }
 
         private void Page_PreviewKeyDown(object sender, KeyEventArgs e)
