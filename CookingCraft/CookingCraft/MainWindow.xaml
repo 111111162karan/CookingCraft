@@ -7,60 +7,30 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <!--Grid Column-Definitionen-->
-        
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/> <!--1/4 of the screens width-->
-            <ColumnDefinition Width="2*"/> <!--1/2 of the screens width-->
-            <ColumnDefinition Width="*"/> <!--1/4-->
-        </Grid.ColumnDefinitions>
+        <Grid x:Name="GridSaves">
+            <!--Grid Column-Definitionen-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-        <!--Grid Row-Definitionen-->
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/> <!--1/8 of the screens height-->
-            <RowDefinition Height="6*"/> <!--7/8-->
-        </Grid.RowDefinitions>
-        
-        
-        
-        <!--ingredients list-->
-        <Label 
-            Grid.Column="0" Grid.Row="0" Content="Ingredients:" FontSize="20"
-            HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        
-        
-        <ListView Grid.Column="0" Grid.Row="1" >
-            <!--Ingredients-->
-            
-        </ListView>
-        
-        <!--TextBox for kitchenname-->
-        <TextBox
-            x:Name="TextBoxKitchenname"
-            Grid.Column="1" Grid.Row="0" 
-            HorizontalAlignment="Center" VerticalAlignment="Center"
-            FontSize="20"
-            Text="CookiesKitchen" BorderThickness="0"/>
+            <!--SaveButtons-->
 
-        <!--Achievments Button-->
-        <Button
-            x:Name="ButtonAchievments"
-            Grid.Column="2" Grid.Row="0" 
-            HorizontalAlignment="Right" VerticalAlignment="Top"
-            FontSize="20"
-            Content="A" Width="50" Height="50"
-            Margin="5"/>
-        
-        <!--Shop Button-->
-        <Button
-            x:Name="ButtonShop"
-            Grid.Column="2" Grid.Row="1" 
-            HorizontalAlignment="Right" VerticalAlignment="Top"
-            FontSize="20"
-            Content="S" Width="50" Height="50"
-            Margin="5"/>    
+            <Button 
+                x:Name="Save1" Grid.Column="0" Width="200" Height="200" 
+                Content="Save 1" Click="Button_Click"
+                FontSize="30" VerticalContentAlignment="Top"/>
 
-
-
+            <Button 
+                x:Name="Save2" Grid.Column="1"  Width="200" Height="200" 
+                Content="Save 2" Click="Button_Click"
+                FontSize="30" VerticalContentAlignment="Top"/>  
+            <Button 
+            x:Name="Save3" Grid.Column="2"  Width="200" Height="200" 
+            Content="Save 3" Click="Button_Click"
+            FontSize="30" VerticalContentAlignment="Top"/>
+        </Grid>
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>

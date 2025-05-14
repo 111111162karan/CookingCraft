@@ -18,10 +18,26 @@ namespace CookingCraft
     {
         public MainWindow()
         {
+
             InitializeComponent();
-
-            
-
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            // Which button gets pressed determines what save is loaded
+            Button btn = sender as Button;
+            string saveFileName = btn.Name;
+
+            // Load the save
+            // TODO: Load the save
+
+            // Hide the grid with the saves
+            GridSaves.Visibility = Visibility.Collapsed;
+
+            // Show the main game
+            MainFrame.Navigate(new MainGame());
+            
+        }
+
     }
 }
