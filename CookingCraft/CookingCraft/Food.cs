@@ -37,6 +37,22 @@ namespace CookingCraft
             CollectionFood.Add(this);
         }
 
+        // Combine two Food objects into one new Food object
+        public Food Combine()
+        {
+            Food food = new Food();
+
+
+
+
+            return food;
+        }
+
+        private void CallAchievment()
+        {
+
+        }
+
 
 
     }

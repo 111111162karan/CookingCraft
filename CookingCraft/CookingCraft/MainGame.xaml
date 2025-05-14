@@ -39,7 +39,17 @@
             HorizontalAlignment="Center" VerticalAlignment="Center"/>   
 
 
-        <ListView Grid.Column="0" Grid.Row="1" >
+        <ListView x:Name="ListViewGame" Grid.Column="0" Grid.Row="1" >
+            <!--Template so theres a sprite to the left and text to the right-->
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <Image Source="{Binding Sprite}" Width="30" Height="30" Margin="0,0,10,0"/>
+                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center" FontSize="16"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            
             <!--Ingredients-->
 
         </ListView>
@@ -69,7 +79,9 @@
             FontSize="20"
             Content="S" Width="50" Height="50"
             Margin="5"/>
-        
+
+        <Canvas x:Name="GameCanvas" Grid.Column="1" Grid.Row="0"/>
+
         <!--Focus Stealer Button-->
         <Button x:Name="FocusStealer" Opacity="0" Focusable="True" IsTabStop="False" Width="0" Height="0"/>
     </Grid>
