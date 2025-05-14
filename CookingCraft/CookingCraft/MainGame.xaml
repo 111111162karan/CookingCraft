@@ -7,7 +7,9 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Background="White"
-      Title="MainGame">
+      Title="MainGame"
+      PreviewKeyDown="Page_PreviewKeyDown"
+      >
 
     <Grid>
         <!--Grid Column-Definitionen-->
@@ -33,8 +35,8 @@
 
         <!--ingredients list-->
         <Label 
-    Grid.Column="0" Grid.Row="0" Content="Ingredients:" FontSize="20"
-    HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            Grid.Column="0" Grid.Row="0" Content="Ingredients:" FontSize="20"
+            HorizontalAlignment="Center" VerticalAlignment="Center"/>   
 
 
         <ListView Grid.Column="0" Grid.Row="1" >
@@ -44,28 +46,31 @@
 
         <!--TextBox for kitchenname-->
         <TextBox
-    x:Name="TextBoxKitchenname"
-    Grid.Column="1" Grid.Row="0" 
-    HorizontalAlignment="Center" VerticalAlignment="Center"
-    FontSize="20"
-    Text="CookiesKitchen" BorderThickness="0"/>
+            x:Name="TextBoxKitchenname"
+            Grid.Column="1" Grid.Row="0" 
+            HorizontalAlignment="Center" VerticalAlignment="Center"
+            FontSize="20"
+            Text="CookiesKitchen" BorderThickness="0"/>
 
         <!--Achievments Button-->
         <Button
-    x:Name="ButtonAchievments"
-    Grid.Column="2" Grid.Row="0" 
-    HorizontalAlignment="Right" VerticalAlignment="Top"
-    FontSize="20"
-    Content="A" Width="50" Height="50"
-    Margin="5"/>
+            x:Name="ButtonAchievments"
+            Grid.Column="2" Grid.Row="0" 
+            HorizontalAlignment="Right" VerticalAlignment="Top"
+            FontSize="20"
+            Content="A" Width="50" Height="50"
+            Margin="5"/>
 
         <!--Shop Button-->
         <Button
-    x:Name="ButtonShop"
-    Grid.Column="2" Grid.Row="1" 
-    HorizontalAlignment="Right" VerticalAlignment="Top"
-    FontSize="20"
-    Content="S" Width="50" Height="50"
-    Margin="5"/>
+            x:Name="ButtonShop"
+            Grid.Column="2" Grid.Row="1" 
+            HorizontalAlignment="Right" VerticalAlignment="Top"
+            FontSize="20"
+            Content="S" Width="50" Height="50"
+            Margin="5"/>
+        
+        <!--Focus Stealer Button-->
+        <Button x:Name="FocusStealer" Opacity="0" Focusable="True" IsTabStop="False" Width="0" Height="0"/>
     </Grid>
 </Page>

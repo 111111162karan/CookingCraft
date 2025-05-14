@@ -24,5 +24,16 @@ namespace CookingCraft
         {
             InitializeComponent();
         }
+
+        private void Page_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            // Check if the key pressed is Enter
+            if (e.Key == Key.Enter)
+            {
+                // Unfocus the current element (puts focus on invisible element)
+                FocusStealer.Focus();
+            }
+
+        }
     }
 }
