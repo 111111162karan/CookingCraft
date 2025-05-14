@@ -19,6 +19,9 @@ namespace CookingCraft
         public MainWindow()
         {
             InitializeComponent();
+
+            
+
         }
     }
 }
