@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Ribbon.Primitives;
@@ -24,6 +25,9 @@ namespace CookingCraft
         public int ID { get; set; }
         private ImageSource Sprite { get; set; }
         private Canvas GameCanvas { get; set; }
+
+        public double XPos { get; set; }
+        public double YPos { get; set; }
 
         private ObservableCollection<Food> CollectionFood { get; set; }
 
@@ -51,6 +55,14 @@ namespace CookingCraft
         {
 
         }
+        public Food(bool trash = true)
+        {
+
+            // Constructor for trash food
+            ID = 0;
+            Name = "Trash";
+            Sprite = new BitmapImage(new Uri("Ressources/Trash.png"));
+        }
         // Methods
 
         public void AddEntry(ObservableCollection<Food> CollectionFood)
@@ -70,7 +82,7 @@ namespace CookingCraft
             int biggerID = Math.Max(ID, Ingredient.ID);
 
 
-            using (var reader = new StreamReader("Ressources/IngredientCombines.csv"))
+            using (var reader = new StreamReader("Ressources/Recipes.csv"))
             {
                 // Read the file line by line
                 string? line;
@@ -86,9 +98,12 @@ namespace CookingCraft
                     }
                 }
             }
-
-
-
+            // Check if the food was found
+            if (food == null)
+            {
+                // If not found, create trash food
+                return new Food(trash: true);
+            }
 
             return food;
         }

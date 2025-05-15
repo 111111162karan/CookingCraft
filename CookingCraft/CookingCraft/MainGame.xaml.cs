@@ -21,14 +21,17 @@ namespace CookingCraft
     /// </summary>
     public partial class MainGame : Page
     {
+        
+        public ObservableCollection<Food> entrys { get; set; } // ObservableCollection to hold the food items
         public MainGame()
         {
             InitializeComponent();
 
             // Set the DataContext of the ListView to the ObservableCollection
             // initialize ListView
-            ObservableCollection<Food> entrys = new ObservableCollection<Food>();
+            entrys = new ObservableCollection<Food>();
             ListViewGame.ItemsSource = entrys;
+
         }
 
         private void Page_PreviewKeyDown(object sender, KeyEventArgs e)
@@ -39,6 +42,10 @@ namespace CookingCraft
                 // Unfocus the current element (puts focus on invisible element)
                 FocusStealer.Focus();
             }
+
+        }
+        private void InitialiseListView()
+        {
 
         }
     }
