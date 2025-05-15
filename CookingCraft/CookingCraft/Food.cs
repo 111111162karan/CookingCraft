@@ -18,12 +18,19 @@ namespace CookingCraft
         private Canvas GameCanvas { get; set; }
 
         // Constructor
-        public Food(string name, int id, Canvas sprite, Canvas gameCanvas)
+        public Food(int id, Canvas gameCanvas, bool bought = false)
         {
-            Name = name;
+            // bought decides whether the Ingredient was bought, combined or available since the start
+            
             ID = id;
-            Sprite = sprite;
             GameCanvas = gameCanvas;
+
+            if (bought)
+            {
+
+
+            }
+
         }
         public Food()
         {
@@ -38,8 +45,9 @@ namespace CookingCraft
         }
 
         // Combine two Food objects into one new Food object
-        public Food Combine()
+        public Food Combine(Food Ingredient)
         {
+            // Ingredient : Food that this Object gets combined with
             Food food = new Food();
 
 
@@ -48,11 +56,29 @@ namespace CookingCraft
             return food;
         }
 
-        private void CallAchievment()
+        // Calls the Achievment
+        public void CallAchievment()
         {
 
         }
 
+        // Sets the Sprite
+        private void LoadSprite()
+        {
+
+        }
+
+        // Sets the Name 
+        private void LoadName()
+        {
+
+        }
+
+        // Call this if Food is created or placed somewehere
+        private void Pop()
+        {
+
+        }
 
 
     }
