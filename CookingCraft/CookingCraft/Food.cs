@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 
 namespace CookingCraft
 {
-    class Food
+    public class Food
     {
         // Properties
 
@@ -61,7 +61,7 @@ namespace CookingCraft
             // Constructor for trash food
             ID = 0;
             Name = "Trash";
-            Sprite = new BitmapImage(new Uri("Ressources/Trash.png"));
+            Sprite = new BitmapImage(new Uri("Ressources/Sprites/Trash.png"));
         }
         // Methods
 
@@ -82,7 +82,7 @@ namespace CookingCraft
             int biggerID = Math.Max(ID, Ingredient.ID);
 
 
-            using (var reader = new StreamReader("Ressources/Recipes.csv"))
+            using (var reader = new StreamReader("Ressources/Sprites/Recipes.csv"))
             {
                 // Read the file line by line
                 string? line;
@@ -117,7 +117,7 @@ namespace CookingCraft
         // Sets the Sprite
         private void LoadSprite()
         {
-            var spriteSheet = new BitmapImage(new Uri("Ressources/IngredientsSpriteSheet.png"));
+            var spriteSheet = new BitmapImage(new Uri("Ressources/Sprites/IngredientsSpriteSheet.png"));
 
             int spriteIndex = ID - 1; // Assuming ID starts from 1
             int spriteX = (spriteIndex % SpritesPerRow) * PixelSize;

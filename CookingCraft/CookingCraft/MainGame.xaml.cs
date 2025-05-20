@@ -23,15 +23,18 @@ namespace CookingCraft
     {
         
         public ObservableCollection<Food> entrys { get; set; } // ObservableCollection to hold the food items
-        public MainGame()
+        public Game CookingGame { get; set; } // Game object to hold the game state
+        public MainGame(Game game)
         {
             InitializeComponent();
+
+            CookingGame = game; // Set the game object
 
             // Set the DataContext of the ListView to the ObservableCollection
             // initialize ListView
             entrys = new ObservableCollection<Food>();
             ListViewGame.ItemsSource = entrys;
-
+            InitialiseListView();
         }
 
         private void Page_PreviewKeyDown(object sender, KeyEventArgs e)
@@ -46,6 +49,7 @@ namespace CookingCraft
         }
         private void InitialiseListView()
         {
+
 
         }
     }
