@@ -25,13 +25,15 @@
 
         <!--Grid Row-Definitionen-->
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
             <!--1/8 of the screens height-->
             <RowDefinition Height="5*"/>
             <!--7/8-->
         </Grid.RowDefinitions>
 
-
+        
+        <Border Grid.Column="0" BorderThickness="1" BorderBrush="LightGray" Grid.ColumnSpan="3"/>
+        
 
         <!--ingredients list-->
         <Label 
@@ -39,7 +41,7 @@
             HorizontalAlignment="Center" VerticalAlignment="Center"/>   
 
 
-        <ListView x:Name="ListViewGame" Grid.Column="0" Grid.Row="1" >
+        <ListView x:Name="ListViewGame" Grid.Column="0" Grid.Row="1" Background="LightGray">
             <!--Template so theres a sprite to the left and text to the right-->
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -53,34 +55,39 @@
             <!--Ingredients-->
 
         </ListView>
+        
 
         <!--TextBox for kitchenname-->
         <TextBox
             x:Name="TextBoxKitchenname"
-            Grid.Column="1" Grid.Row="0" 
+            Grid.Column="1" Grid.Row="0"
             HorizontalAlignment="Center" VerticalAlignment="Center"
             FontSize="20"
             Text="CookiesKitchen" BorderThickness="0"/>
 
-        <!--Achievments Button-->
-        <Button
-            x:Name="ButtonAchievments"
-            Grid.Column="2" Grid.Row="0" 
-            HorizontalAlignment="Right" VerticalAlignment="Top"
-            FontSize="20"
-            Content="A" Width="50" Height="50"
-            Margin="5"/>
+        <StackPanel Grid.Row="0" Grid.Column="2">
+            <!--Achievments Button-->
+            <Button
+                x:Name="ButtonAchievments"              
+                HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                Background="Transparent" BorderBrush="Transparent"
+                FontSize="37"
+                Content="📖" Width="75" Height="50"
+                Cursor="Hand"
+                Margin="5"/>
 
-        <!--Shop Button-->
-        <Button
-            x:Name="ButtonShop"
-            Grid.Column="2" Grid.Row="1" 
-            HorizontalAlignment="Right" VerticalAlignment="Top"
-            FontSize="20"
-            Content="S" Width="50" Height="50"
-            Margin="5"/>
+            <!--Shop Button-->
+            <Button
+                x:Name="ButtonShop" 
+                HorizontalAlignment="Right" VerticalAlignment="Top"
+                Background="Transparent" BorderBrush="Transparent"
+                FontSize="37"
+                Content="🧺" Width="75" Height="50"
+                Cursor="Hand"
+                Margin="5"/>
+        </StackPanel>
 
-        <Canvas x:Name="GameCanvas" Grid.Column="1" Grid.Row="0"/>
+        <Canvas x:Name="GameCanvas" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2"/>
 
         <!--Focus Stealer Button-->
         <Button x:Name="FocusStealer" Opacity="0" Focusable="True" IsTabStop="False" Width="0" Height="0"/>
