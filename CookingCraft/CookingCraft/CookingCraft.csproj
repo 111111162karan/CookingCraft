@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="AI Sprites\FIxFertig\" />
     <Folder Include="Ressources\Sprites\" />
   </ItemGroup>
 
