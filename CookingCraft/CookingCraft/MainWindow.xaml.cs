@@ -30,7 +30,9 @@ namespace CookingCraft
 
             // Load the save
             // TODO: Load the save
-            Game game = Game.LoadGame(saveFileName);
+            Game game = Game.Load(saveFileName);
+
+
 
             // Hide the grid with the saves
             GridSaves.Visibility = Visibility.Collapsed;
