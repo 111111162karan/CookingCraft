@@ -16,6 +16,8 @@ namespace CookingCraft
     /// </summary>
     public partial class MainWindow : Window
     {
+        public Game game { get; set; } // Game object to hold the game state
+        public string saveFileName;
         public MainWindow()
         {
 
@@ -26,11 +28,13 @@ namespace CookingCraft
         {
             // Which button gets pressed determines what save is loaded
             Button btn = sender as Button;
-            string saveFileName = btn.Name;
+            saveFileName = btn.Name;
 
             // Load the save
             // TODO: Load the save
-            Game game = Game.LoadGame(saveFileName);
+            game = Game.Load(saveFileName);
+
+
 
             // Hide the grid with the saves
             GridSaves.Visibility = Visibility.Collapsed;
@@ -40,5 +44,9 @@ namespace CookingCraft
             
         }
 
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            game.Save(saveFileName); // Save the game on close
+        }
     }
 }

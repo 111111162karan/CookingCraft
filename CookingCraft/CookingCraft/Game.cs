@@ -7,6 +7,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Documents;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
@@ -21,10 +22,11 @@ namespace CookingCraft
         private static string GetSavePath(string SaveName) => $"Saves/{SaveName}.json";
 
 
-        public Game(List<int> ingredients, int coins) 
+        public Game(List<int> ingredients, int coins, string kitchenname) 
         {
             IngredientIDs = ingredients;
             Coins = coins;
+            KitchenName = kitchenname;
 
         }
         public Game()
@@ -48,19 +50,38 @@ namespace CookingCraft
             Game game = new Game();
             using (var reader = new StreamReader(GetSavePath(FileName)))
             {
+                
                 var json = reader.ReadToEnd();
+                if(json == "")
+                {
+                    return new Game(null, 0, "CookiesKitchen"); // Return a new game if the file is empty or not found
+                }
                 game = JsonSerializer.Deserialize<Game>(json);
             }
             return game;
         }
-        public void Initialise(ObservableCollection<Food> Entrys, Canvas GameCanvas)
+        public void Initialise(ObservableCollection<Food> Entrys, Canvas GameCanvas, TextBox TextBoxKitchen)
         {
-            // Load the ingredients from the IDs
-            foreach (int id in IngredientIDs)
-            {
-                Food food = new Food(id, GameCanvas,Entrys, bought:true);
+            
 
+            
+
+            // Set the kitchen name in the TextBox
+            TextBoxKitchen.Text = KitchenName;
+
+
+
+            // Load the ingredients from the IDs
+            if (IngredientIDs != null)
+            {
+                foreach (int id in IngredientIDs)
+                {
+                    Food food = new Food(id, GameCanvas, Entrys, bought: true);
+
+                }
             }
+            
+
 
         }
     }

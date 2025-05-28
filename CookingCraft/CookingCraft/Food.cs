@@ -39,6 +39,7 @@ namespace CookingCraft
             ID = id;
             GameCanvas = gameCanvas;
             CollectionFood = collection;
+            
             // Load the sprite and name
             this.LoadSprite();
             this.LoadName();
@@ -82,7 +83,7 @@ namespace CookingCraft
             int biggerID = Math.Max(ID, Ingredient.ID);
 
 
-            using (var reader = new StreamReader("Ressources/Sprites/Recipes.csv"))
+            using (var reader = new StreamReader("Ressources/Recipes.csv"))
             {
                 // Read the file line by line
                 string? line;
@@ -94,6 +95,7 @@ namespace CookingCraft
                     if (int.Parse(parts[0]) == smallerID && int.Parse(parts[1]) == biggerID)
                     {
                         food = new Food(int.Parse(parts[3]), GameCanvas, CollectionFood);
+                        food.CallAchievment();
                         break;
                     }
                 }
@@ -111,6 +113,14 @@ namespace CookingCraft
         // Calls the Achievment
         public void CallAchievment()
         {
+            // TODO:
+            // Popup Message
+            // Put into List of Achievments
+
+
+
+
+
 
         }
 
