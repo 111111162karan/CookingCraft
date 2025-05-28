@@ -63,7 +63,8 @@
             Grid.Column="1" Grid.Row="0"
             HorizontalAlignment="Center" VerticalAlignment="Center"
             FontSize="20"
-            Text="CookiesKitchen" BorderThickness="0"/>
+            Text="CookiesKitchen" BorderThickness="0"
+            TextChanged="TextBoxKitchenname_TextChanged"/>
 
         <StackPanel Grid.Row="0" Grid.Column="2">
             <!--Achievments Button-->

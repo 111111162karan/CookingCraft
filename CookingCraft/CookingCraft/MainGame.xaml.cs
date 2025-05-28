@@ -21,12 +21,14 @@ namespace CookingCraft
     /// </summary>
     public partial class MainGame : Page
     {
-        
+
+        public bool initialised = false;
         public ObservableCollection<Food> entrys { get; set; } // ObservableCollection to hold the food items
         public Game CookingGame { get; set; } // Game object to hold the game state
         public MainGame(Game game)
         {
             InitializeComponent();
+            initialised = true;
 
             CookingGame = game; // Set the game object
                                 
@@ -37,7 +39,7 @@ namespace CookingCraft
             entrys = new ObservableCollection<Food>();
             ListViewGame.ItemsSource = entrys;
 
-            CookingGame.Initialise(entrys, GameCanvas); // Initialise the game
+            CookingGame.Initialise(entrys, GameCanvas, TextBoxKitchenname); // Initialise the game
         }
 
         private void Page_PreviewKeyDown(object sender, KeyEventArgs e)
@@ -49,6 +51,15 @@ namespace CookingCraft
                 FocusStealer.Focus();
             }
 
+        }
+
+        private void TextBoxKitchenname_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (initialised)
+            {
+                CookingGame.KitchenName = TextBoxKitchenname.Text; // Update the kitchen name in the game object
+
+            }
         }
     }
 }
