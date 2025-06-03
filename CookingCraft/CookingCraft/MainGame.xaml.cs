@@ -1,4 +1,5 @@
 ﻿using System;
+using Serilog;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -49,7 +50,10 @@ namespace CookingCraft
             {
                 // Unfocus the current element (puts focus on invisible element)
                 FocusStealer.Focus();
+                Log.Logger.Information("Enter key pressed, unfocused current element.");
             }
+
+            
 
         }
 
@@ -58,6 +62,7 @@ namespace CookingCraft
             if (initialised)
             {
                 CookingGame.KitchenName = TextBoxKitchenname.Text; // Update the kitchen name in the game object
+                Log.Logger.Information($"Kitchen name changed to: {CookingGame.KitchenName}");
 
             }
         }

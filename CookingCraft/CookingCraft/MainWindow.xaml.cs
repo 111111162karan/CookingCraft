@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using Serilog;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -22,6 +23,10 @@ namespace CookingCraft
         {
 
             InitializeComponent();
+            Log.Logger = new LoggerConfiguration()
+                .WriteTo.Console()
+                .WriteTo.File("kitchenlog.log")
+                .CreateLogger();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -42,11 +47,14 @@ namespace CookingCraft
             // Show the main game
             MainFrame.Navigate(new MainGame(game));
             
+            Log.Logger.Information($"Game loaded from save file: {saveFileName}");
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             game.Save(saveFileName); // Save the game on close
+            Log.Logger.Information($"Game saved to file: {saveFileName}");
+            Log.Logger.Information("Window was closed.");
         }
     }
 }
