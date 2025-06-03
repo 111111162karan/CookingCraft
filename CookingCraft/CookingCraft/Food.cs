@@ -119,9 +119,6 @@ namespace CookingCraft
 
 
 
-
-
-
         }
 
         // Sets the Sprite
