@@ -24,7 +24,7 @@ namespace CookingCraft
 
         public string Name { get; set; }
         public int ID { get; set; }
-        private ImageSource Sprite { get; set; }
+        public ImageSource Sprite { get; set; }
         private Canvas GameCanvas { get; set; }
 
         public double XPos { get; set; }
@@ -127,7 +127,7 @@ namespace CookingCraft
         // Sets the Sprite
         private void LoadSprite()
         {
-            var spriteSheet = new BitmapImage(new Uri("Ressources/Sprites/IngredientsSpriteSheet.png"));
+            var spriteSheet = new BitmapImage(new Uri("Ressources/Sprites/IngredientsSpriteSheet.png", UriKind.Relative));
 
             int spriteIndex = ID - 1; // Assuming ID starts from 1
             int spriteX = (spriteIndex % SpritesPerRow) * PixelSize;
