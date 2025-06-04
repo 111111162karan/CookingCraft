@@ -18,7 +18,7 @@ namespace CookingCraft
     {
         // Properties
 
-        private const int PixelSize = 32; // Size of the sprite in pixels
+        private const int PixelSize = 320; // Size of the sprite in pixels
         private const int SpritesPerRow = 8; // Number of sprites per row in the sprite sheet
 
         public string Name { get; set; }
