@@ -1,4 +1,5 @@
 ﻿using System;
+using Serilog;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -49,6 +50,7 @@ namespace CookingCraft
 
 
                 this.AddEntry(CollectionFood);
+                Log.Logger.Information($"Food with ID {ID} and Name {Name} was bought and added to the collection.");
             }
 
         }
@@ -70,6 +72,7 @@ namespace CookingCraft
         {
             // Add the food to the collection
             CollectionFood.Add(this);
+            Log.Logger.Information($"Food with ID {ID} and Name {Name} was added to the collection.");
         }
 
         // Combine two Food objects into one new Food object
@@ -81,7 +84,7 @@ namespace CookingCraft
             // Decide which ID is smaller (becuase the CSV is sorted)
             int smallerID = Math.Min(ID, Ingredient.ID);
             int biggerID = Math.Max(ID, Ingredient.ID);
-
+            Log.Logger.Information($"Combining Food with ID {ID} and Name {Name} with Food with ID {Ingredient.ID} and Name {Ingredient.Name}.");
 
             using (var reader = new StreamReader("Ressources/Recipes.csv"))
             {
@@ -116,7 +119,7 @@ namespace CookingCraft
             // TODO:
             // Popup Message
             // Put into List of Achievments
-
+            Log.Logger.Information($"Achievment for Food with ID {ID} and Name {Name} was called.");
 
 
         }
@@ -132,6 +135,7 @@ namespace CookingCraft
             var spriteRect = new Int32Rect(spriteX, spriteY, PixelSize, PixelSize);
             var croppedSprite = new CroppedBitmap(spriteSheet, spriteRect);
             Sprite = croppedSprite;
+            Log.Logger.Information($"Sprite for Food with ID {ID} and Name {Name} was loaded.");
 
         }
 
@@ -154,6 +158,7 @@ namespace CookingCraft
                     }
                 }
             }
+            Log.Logger.Information($"Name for Food with ID {ID} was set to {Name}.");
 
         }
     }

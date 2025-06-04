@@ -1,4 +1,5 @@
 ﻿using System;
+using Serilog;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -43,7 +44,8 @@ namespace CookingCraft
                 writer.Write(json);
 
             }
-            
+            Log.Logger.Information($"Game saved to file: {FileName}");
+
         }
         public static Game Load(string FileName)
         {
@@ -58,6 +60,7 @@ namespace CookingCraft
                 }
                 game = JsonSerializer.Deserialize<Game>(json);
             }
+            Log.Logger.Information($"Game loaded from file: {FileName}");
             return game;
         }
         public void Initialise(ObservableCollection<Food> Entrys, Canvas GameCanvas, TextBox TextBoxKitchen)
@@ -81,7 +84,7 @@ namespace CookingCraft
                 }
             }
             
-
+            Log.Logger.Information($"Game initialised with {IngredientIDs.Count} ingredients and {Coins} coins in kitchen: {KitchenName}.");
 
         }
     }
