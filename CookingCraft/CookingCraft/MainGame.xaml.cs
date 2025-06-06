@@ -41,6 +41,7 @@ namespace CookingCraft
             ListViewGame.ItemsSource = entrys;
 
             CookingGame.Initialise(entrys, GameCanvas, TextBoxKitchenname); // Initialise the game
+
         }
 
         private void Page_PreviewKeyDown(object sender, KeyEventArgs e)
