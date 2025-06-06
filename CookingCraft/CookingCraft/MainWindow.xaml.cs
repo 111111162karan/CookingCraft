@@ -52,6 +52,14 @@ namespace CookingCraft
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+
+
+
+            if(game == null)
+            {
+                Log.Logger.Warning("Game is null, cannot save.");
+                return;
+            }
             game.Save(saveFileName); // Save the game on close
             Log.Logger.Information($"Game saved to file: {saveFileName}");
             Log.Logger.Information("Window was closed.");
