@@ -67,13 +67,8 @@ namespace CookingCraft
         {
             
 
-            
-
             // Set the kitchen name in the TextBox
             TextBoxKitchen.Text = KitchenName;
-
-
-
             // Load the ingredients from the IDs
             if (IngredientIDs != null)
             {
@@ -83,8 +78,8 @@ namespace CookingCraft
 
                 }
             }
-            
-            Log.Logger.Information($"Game initialised with {IngredientIDs.Count} ingredients and {Coins} coins in kitchen: {KitchenName}.");
+
+            Log.Logger.Information($"Game initialised");
 
         }
     }
