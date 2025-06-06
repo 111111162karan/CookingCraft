@@ -142,7 +142,7 @@ namespace CookingCraft
         // Sets the Name 
         private void LoadName()
         {
-            using (var reader = new StreamReader("Ressources/IngredientNames.csv"))
+            using (var reader = new StreamReader("Ressources/IngredientNames.csv", Encoding.UTF8))
             {
                 // Read the file line by line
                 string? line; ;
