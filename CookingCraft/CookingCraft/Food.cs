@@ -36,7 +36,7 @@ namespace CookingCraft
         public Food(int id, Canvas gameCanvas, ObservableCollection<Food> collection, bool bought = false)
         {
             // bought decides whether the Ingredient was bought, combined or available since the start
-
+              
             ID = id;
             GameCanvas = gameCanvas;
             CollectionFood = collection;

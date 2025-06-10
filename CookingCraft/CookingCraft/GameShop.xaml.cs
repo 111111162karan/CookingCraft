@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -31,21 +33,17 @@ namespace CookingCraft
 
         private const int AvailableFoodID = 30; // The last ID that can be bought 
 
+        public List<Food> boughtFood = new List<Food>();
+
+        public Game game;
+
         public GameShop(MainGame gameWindow)
         {
             InitializeComponent();
             mainGame = gameWindow;
             CollectionFood = mainGame.entrys; // Get the food collection from the main game
-            Restock();
+            game = gameWindow.CookingGame;
 
-        }
-
-
-
-
-        public void Restock()
-        {
-            List<Food> boughtFood = new List<Food>();
 
 
             foreach (Food food in CollectionFood)
@@ -53,46 +51,129 @@ namespace CookingCraft
                 boughtFood.Add(food);
             }
 
-            bool breaker = false; // Flag to break out of the loop when the maximum food count is reached
+            Restock();
+
+        }
+
+
+
+        public void Restock()
+        {
             int counter = 0;
-            using (var reader = new StreamReader("Ressources/IngredientNames"))
+
+            using (var reader = new StreamReader("Ressources/IngredientNames.csv"))
             {
                 string line;
-                while ((line = reader.ReadLine()) != null)
+                while ((line = reader.ReadLine()) != null && counter < MaxFoodCount)
                 {
                     string[] parts = line.Split(';');
-                    if (breaker) break; // Break the loop if the flag is set to true
-                    foreach (Food food in boughtFood)
+                    int id = int.Parse(parts[0]);
+
+                    // Prüfen, ob dieses ID schon gekauft wurde
+                    bool alreadyBought = false;
+                    foreach (var food in boughtFood)
                     {
-                        if ($"{food.ID}" != parts[0])
+                        if (food.ID == id)
                         {
-                            if (counter <= MaxFoodCount)
-                            {
-                                ShopFood[counter] = new Food(int.Parse(parts[0]), GameCanvas, CollectionFood, false);
-                                counter++;
-                            }
-                            else
-                            {
-                                breaker = true; // Set the flag to true to break out of the loop
-                                break;
-                            }
+                            alreadyBought = true;
+                            break;
                         }
+                    }
+
+                    if (!alreadyBought)
+                    {
+                        ShopFood[counter] = new Food(id, GameCanvas, CollectionFood, false);
+                        counter++;
                     }
                 }
             }
 
+            DrawShop();
+        }
 
+
+
+
+
+        private void DrawShop()
+        {
+
+            Image1.Source = ShopFood[0].Sprite;
+            Image2.Source = ShopFood[1].Sprite;
+            Image3.Source = ShopFood[2].Sprite;
+            Image4.Source = ShopFood[3].Sprite;
+            Image5.Source = ShopFood[4].Sprite;
+
+            Label1.Content = ShopFood[0].Name;
+            Label2.Content = ShopFood[1].Name;
+            Label3.Content = ShopFood[2].Name;
+            Label4.Content = ShopFood[3].Name;
+            Label5.Content = ShopFood[4].Name;
 
         }
 
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            if(game.Coins < 5)
+            {
+                return;
+            }
+
+
             Button button = sender as Button;
-            int index = int.Parse(button.Name);
 
-            
+            // Letzte Ziffer im Button-Namen gibt den Slot an (Image1 -> index 0)
+            int index = int.Parse(button.Name.Last().ToString()) - 1;
+            Food selectedFood = ShopFood[index];
 
+            // Gekauftes Item zur Liste hinzufügen
+            boughtFood.Add(new Food(selectedFood.ID, GameCanvas, CollectionFood, true));
+
+            // Neues Item finden, das noch nicht gekauft oder im Shop ist
+            using (var reader = new StreamReader("Ressources/IngredientNames.csv"))
+            {
+                string line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    string[] parts = line.Split(';');
+                    int id = int.Parse(parts[0]);
+
+                    bool alreadyUsed = false;
+
+                    // Prüfen ob es bereits gekauft wurde
+                    foreach (var food in boughtFood)
+                    {
+                        if (food.ID == id)
+                        {
+                            alreadyUsed = true;
+                            break;
+                        }
+                    }
+
+                    // Prüfen ob es bereits im Shop ist
+                    if (!alreadyUsed)
+                    {
+                        for (int i = 0; i < ShopFood.Length; i++)
+                        {
+                            if (ShopFood[i] != null && ShopFood[i].ID == id)
+                            {
+                                alreadyUsed = true;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (!alreadyUsed)
+                    {
+                        // Neues Item setzen
+                        ShopFood[index] = new Food(id, GameCanvas, CollectionFood, false);
+                        break;
+                    }
+                }
+            }
+
+            DrawShop();
         }
     }
 }

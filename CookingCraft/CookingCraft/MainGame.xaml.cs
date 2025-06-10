@@ -67,5 +67,11 @@ namespace CookingCraft
 
             }
         }
+
+        private void ButtonShop_Click(object sender, RoutedEventArgs e)
+        {
+            GameShop ShopWindow = new GameShop(this);
+            ShopWindow.Show();
+        }
     }
 }

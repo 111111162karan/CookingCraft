@@ -86,7 +86,7 @@
                 FontSize="37"
                 Content="🧺" Width="75" Height="50"
                 Cursor="Hand"
-                Margin="5"/>
+                Margin="5" Click="ButtonShop_Click"/>
             
             <!--Coins Label-->
             <Label
