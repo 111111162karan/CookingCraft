@@ -12,7 +12,7 @@
     <None Remove="Ressources\Achievements.csv" />
     <None Remove="Ressources\IngredientNames.csv" />
     <None Remove="Ressources\Recipes.csv" />
-    <None Remove="Ressources\Sprites\IngredientsSpriteSheet.png" />
+	<None Remove="Ressources\Sprites\IngredientsSpriteSheet.png" />
     <None Remove="Ressources\Sprites\trash.png" />
     <None Remove="Saves\Save1.json" />
     <None Remove="Saves\Save2.json" />
@@ -46,12 +46,12 @@
     <PackageReference Include="Serilog.Sinks.File" Version="7.0.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Include="Ressources\Sprites\IngredientsSpriteSheet.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
+	<ItemGroup>
+		<Content Include="Ressources\Sprites\IngredientsSpriteSheet.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
 
+	</ItemGroup>
   <ItemGroup>
     <Content Include="Ressources\Sprites\trash.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

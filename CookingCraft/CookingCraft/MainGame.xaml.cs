@@ -307,5 +307,10 @@ namespace CookingCraft
             }
         }
 
+        private void ButtonAchievements_Click(object sender, RoutedEventArgs e)
+        {
+            var achievementsWindow = new Achievements();
+            achievementsWindow.Show();
+        }
     }
 }
