@@ -64,7 +64,7 @@ namespace CookingCraft
             // Constructor for trash food
             ID = 0;
             Name = "Trash";
-            Sprite = new BitmapImage(new Uri("Ressources/Sprites/Trash.png"));
+            Sprite = new BitmapImage(new Uri("Ressources/Sprites/trash.png", UriKind.Relative));
         }
         // Methods
 
@@ -76,7 +76,7 @@ namespace CookingCraft
         }
 
         // Combine two Food objects into one new Food object
-        public Food Combine(Food Ingredient)
+        public Food Combine(Food Ingredient, Game game)
         {
             // Ingredient : Food that this Object gets combined with
             Food food = null;
@@ -97,7 +97,8 @@ namespace CookingCraft
                     // Check if the ID matches
                     if (int.Parse(parts[0]) == smallerID && int.Parse(parts[1]) == biggerID)
                     {
-                        food = new Food(int.Parse(parts[3]), GameCanvas, CollectionFood);
+                        food = new Food(int.Parse(parts[2]), GameCanvas, CollectionFood);
+                        game.Coins += 5; // Add coins for combining food
                         food.CallAchievment();
                         break;
                     }

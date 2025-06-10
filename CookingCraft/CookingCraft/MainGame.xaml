@@ -41,7 +41,7 @@
             HorizontalAlignment="Center" VerticalAlignment="Center"/>   
 
 
-        <ListView x:Name="ListViewGame" Grid.Column="0" Grid.Row="1" Background="LightGray">
+        <ListView x:Name="ListViewGame" Grid.Column="0" Grid.Row="1" Background="LightGray" PreviewMouseLeftButtonDown="ListViewGame_PreviewMouseLeftButtonDown" MouseMove="ListViewGame_MouseMove">
             <!--Template so theres a sprite to the left and text to the right-->
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -99,7 +99,7 @@
                 Margin="5"/>
         </StackPanel>
 
-        <Canvas x:Name="GameCanvas" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Background="LightGoldenrodYellow"/>
+        <Canvas x:Name="GameCanvas" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Background="LightGoldenrodYellow" AllowDrop="True" DragOver="GameCanvas_DragOver" Drop="GameCanvas_Drop"/>
 
         <!--Focus Stealer Button-->
         <Button x:Name="FocusStealer" Opacity="0" Focusable="True" IsTabStop="False" Width="0" Height="0"/>

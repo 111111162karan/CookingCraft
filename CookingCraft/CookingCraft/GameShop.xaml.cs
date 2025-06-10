@@ -168,6 +168,7 @@ namespace CookingCraft
                     {
                         // Neues Item setzen
                         ShopFood[index] = new Food(id, GameCanvas, CollectionFood, false);
+                        game.Coins -= 5; // Abziehen der Coins für den Kauf
                         break;
                     }
                 }
