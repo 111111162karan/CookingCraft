@@ -93,7 +93,7 @@
                 x:Name="LabelCoins"
                 HorizontalAlignment="Right" VerticalAlignment="Top"
                 FontSize="25"
-                Content="💰 0"
+                Content="💰0"
                 Height="45"
                 Width="70"
                 Margin="5"/>

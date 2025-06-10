@@ -99,6 +99,7 @@ namespace CookingCraft
                     {
                         food = new Food(int.Parse(parts[2]), GameCanvas, CollectionFood);
                         game.Coins += 5; // Add coins for combining food
+                        
                         food.CallAchievment();
                         break;
                     }

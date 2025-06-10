@@ -42,6 +42,8 @@ namespace CookingCraft
             entrys = new ObservableCollection<Food>();
             ListViewGame.ItemsSource = entrys;
 
+            
+
             CookingGame.Initialise(entrys, GameCanvas, TextBoxKitchenname); // Initialise the game
 
         }

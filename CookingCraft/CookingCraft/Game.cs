@@ -19,6 +19,8 @@ namespace CookingCraft
         public List<int> IngredientIDs { get; set; } = new List<int>();
         public List<int> AchievmentIDs { get; set; } = new List<int>();
         public int Coins { get; set; }
+
+        public string Coinstext { get { return $"💰{Coins.ToString()}"; } }
         public string KitchenName { get; set; } = "CookiesKitchen";
         private static string GetSavePath(string SaveName) => $"Saves/{SaveName}.json";
 
