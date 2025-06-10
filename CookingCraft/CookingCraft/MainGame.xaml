@@ -70,13 +70,13 @@
         <StackPanel Grid.Row="0" Grid.Column="2">
             <!--Achievments Button-->
             <Button
-                x:Name="ButtonAchievments"              
+                x:Name="ButtonAchievements"              
                 HorizontalAlignment="Right" VerticalAlignment="Bottom"
                 Background="Transparent" BorderBrush="Transparent"
                 FontSize="37"
                 Content="📖" Width="75" Height="50"
                 Cursor="Hand"
-                Margin="5"/>
+                Margin="5" Click="ButtonAchievements_Click"/>
 
             <!--Shop Button-->
             <Button

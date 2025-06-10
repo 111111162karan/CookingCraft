@@ -47,9 +47,10 @@
   </ItemGroup>
 
 	<ItemGroup>
-		<Resource Include="Ressources\Sprites\IngredientsSpriteSheet.png">
+		<Content Include="Ressources\Sprites\IngredientsSpriteSheet.png">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Resource>
+		</Content>
+
 	</ItemGroup>
   <ItemGroup>
     <Content Include="Ressources\Sprites\trash.png">
