@@ -130,7 +130,7 @@ namespace CookingCraft
                     if (int.Parse(parts[0]) == ID)
                     {
                         Achievment achievment = new Achievment(int.Parse(parts[2]));
-                        Log.Logger.Information($"Achievment was unlocked for Food with ID: {ID}.");
+                        Log.Logger.Information($"Achievement was unlocked for Food with ID: {ID}.");
                         return;
                     }
                 }
