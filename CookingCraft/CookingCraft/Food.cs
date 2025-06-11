@@ -99,8 +99,7 @@ namespace CookingCraft
                     {
                         food = new Food(int.Parse(parts[2]), GameCanvas, CollectionFood);
                         game.Coins += 5; // Add coins for combining food
-                        
-                        food.CallAchievment();
+
                         break;
                     }
                 }
@@ -116,7 +115,7 @@ namespace CookingCraft
         }
 
         // Calls the Achievment
-        public void CallAchievment()
+        public Achievment CallAchievment(Game game)
         {
             using(var reader = new StreamReader("Ressources/Achievements.csv"))
             {
@@ -131,12 +130,14 @@ namespace CookingCraft
                     {
                         Achievment achievment = new Achievment(int.Parse(parts[2]));
                         Log.Logger.Information($"Achievement was unlocked for Food with ID: {ID}.");
-                        return;
+                        game.AchievmentIDs.Add(achievment.ID); // Add the Achievment ID to the Game
+                        return achievment;
                     }
                 }
             }
+            return new Achievment(0); // Return a default Achievment if none was found
 
-            
+
 
 
         }
