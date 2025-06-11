@@ -20,22 +20,55 @@ namespace CookingCraft
         public int ID { get; set; }
         public bool IsUnlocked { get; set; } = false;
 
+        public int UnlockID { get; set; }  // ID of the achievement that unlocks this one, if applicable
+
         public ImageSource Sprite { get; set; }
-        public Achievment(int id, Game game, ObservableCollection<Achievment> entrys)
+        public Achievment(int id, Game game, ObservableCollection<Achievment> entries)
         {
             ID = id;
             LoadDescription();
             LoadSprite();
 
-            if (game.AchievmentIDs.Contains(ID))
+            // Prüfen, ob es vorher schon unlockt war
+            bool wasAlreadyUnlocked = game.AchievmentIDs.Contains(ID);
+
+            if (!wasAlreadyUnlocked)
             {
-                IsUnlocked = true;
+                // Neues Achievement!
+                game.AchievmentIDs.Add(ID);
+
+                // Pop-Up auf dem UI-Thread anzeigen
+                Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                    MessageBox.Show(
+                        $"Erfolg freigeschaltet:\n{Description}",
+                        "Achievement unlocked",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Information
+                    )
+                ));
             }
-            PopUp();
+
+            // Ist unlocked jetzt immer true (alt oder neu)
+            IsUnlocked = true;
+
+            // Nur einmalig in die Liste einfügen
+            if (!entries.Any(a => a.ID == ID))
+                entries.Add(this);
+        }
+        public Achievment(int id, ObservableCollection<Achievment> entrys)
+        {
+            ID = id;
+            LoadDescription();
+            LoadSprite();
+
             AddEntry(entrys);
 
-
         }
+
+
+
+
+
         public Achievment()
         {
         }
@@ -49,16 +82,21 @@ namespace CookingCraft
         {
             using (var reader = new StreamReader("Ressources/Achievements.csv"))
             {
-                string? line = reader.ReadLine();
-                string[] parts = line.Split(';');
-
-                if (line != null && int.Parse(parts[2]) == ID)
+                string? line;
+                while((line = reader.ReadLine()) != null)
                 {
-                    Description = parts[1];
+                    string[] parts = line.Split(";");
+                    if (int.Parse(parts[2]) == ID)
+                    {
+                        Description = parts[1];
+                        UnlockID = int.Parse(parts[0]); // Assuming the fourth column is the UnlockID
 
-
-
+                    }
                 }
+                    
+                   
+
+
             }
         }
         public void PopUp()
@@ -78,7 +116,7 @@ namespace CookingCraft
         {
             var spriteSheet = new BitmapImage(new Uri("Ressources/Sprites/IngredientsSpriteSheet.png", UriKind.Relative));
 
-            int spriteIndex = ID - 1; // Assuming ID starts from 1
+            int spriteIndex = UnlockID - 1;
             int spriteX = (spriteIndex % SpritesPerRow) * PixelSize;
             int spriteY = (spriteIndex / SpritesPerRow) * PixelSize;
             var spriteRect = new Int32Rect(spriteX, spriteY, PixelSize, PixelSize);

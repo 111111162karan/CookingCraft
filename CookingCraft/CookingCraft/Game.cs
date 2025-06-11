@@ -65,7 +65,7 @@ namespace CookingCraft
             Log.Logger.Information($"Game loaded from file: {FileName}");
             return game;
         }
-        public void Initialise(ObservableCollection<Food> Entrys, Canvas GameCanvas, TextBox TextBoxKitchen)
+        public void Initialise(ObservableCollection<Food> Entrys, Canvas GameCanvas, TextBox TextBoxKitchen, ObservableCollection<Achievment> AchievmentEntrys )
         {
             
 
@@ -82,6 +82,19 @@ namespace CookingCraft
             }
 
             Log.Logger.Information($"Game initialised");
+
+            // Initialisiere Collection of Achievements
+
+            if (AchievmentIDs != null)
+            {
+                foreach (int id in AchievmentIDs)
+                {
+
+                    var rand = new Achievment(id, AchievmentEntrys);
+                }
+            }
+
+
 
         }
     }

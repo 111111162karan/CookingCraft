@@ -46,7 +46,7 @@ namespace CookingCraft
 
 
 
-            CookingGame.Initialise(entrys, GameCanvas, TextBoxKitchenname); // Initialise the game
+            CookingGame.Initialise(entrys, GameCanvas, TextBoxKitchenname, AchievementEntries); // Initialise the game
 
         }
 

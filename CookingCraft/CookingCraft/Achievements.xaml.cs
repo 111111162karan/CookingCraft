@@ -26,7 +26,7 @@ namespace CookingCraft
             InitializeComponent();
 
             // Set the DataContext of the ListView to the provided ObservableCollection
-            ListViewAchievements.DataContext = entrys;
+            ListViewAchievements.ItemsSource = entrys;
         }
     }
 }

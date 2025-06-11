@@ -130,7 +130,6 @@ namespace CookingCraft
                     {
                         Achievment achievment = new Achievment(int.Parse(parts[2]), game, entrys);
                         Log.Logger.Information($"Achievement was unlocked for Food with ID: {ID}.");
-                        game.AchievmentIDs.Add(achievment.ID); // Add the Achievment ID to the Game
                         return achievment;
                     }
                 }
