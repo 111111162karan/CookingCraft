@@ -98,7 +98,7 @@ namespace CookingCraft
                     if (int.Parse(parts[0]) == smallerID && int.Parse(parts[1]) == biggerID)
                     {
                         food = new Food(int.Parse(parts[2]), GameCanvas, CollectionFood);
-                        game.Coins += 5; // Add coins for combining food
+                      
 
                         break;
                     }

@@ -53,7 +53,11 @@ namespace CookingCraft
 
             // Nur einmalig in die Liste einfügen
             if (!entries.Any(a => a.ID == ID))
+            {
+                game.Coins += 5;
                 entries.Add(this);
+            }
+                
         }
         public Achievment(int id, ObservableCollection<Achievment> entrys)
         {
