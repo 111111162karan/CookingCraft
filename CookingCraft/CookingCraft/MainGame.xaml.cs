@@ -229,6 +229,7 @@ namespace CookingCraft
                         if (food2 != null)
                         {
                             Food? result = draggedFood.Combine(food2, CookingGame);
+                            result.CallAchievment(CookingGame); // Achievement check
                             if (result != null)
                             {
                                 // Kombiniertes Bild erzeugen
