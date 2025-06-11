@@ -118,10 +118,25 @@ namespace CookingCraft
         // Calls the Achievment
         public void CallAchievment()
         {
-            // TODO:
-            // Popup Message
-            // Put into List of Achievments
-            Log.Logger.Information($"Achievment for Food with ID {ID} and Name {Name} was called.");
+            using(var reader = new StreamReader("Ressources/Achievements.csv"))
+            {
+                // Read the file line by line
+                string? line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    // Split the line into parts
+                    string[] parts = line.Split(';');
+                    // Check if the ID matches
+                    if (int.Parse(parts[0]) == ID)
+                    {
+                        Achievment achievment = new Achievment(int.Parse(parts[2]));
+                        Log.Logger.Information($"Achievment was unlocked for Food with ID: {ID}.");
+                        return;
+                    }
+                }
+            }
+
+            
 
 
         }
