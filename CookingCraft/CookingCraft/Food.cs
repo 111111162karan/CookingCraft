@@ -36,11 +36,11 @@ namespace CookingCraft
         public Food(int id, Canvas gameCanvas, ObservableCollection<Food> collection, bool bought = false)
         {
             // bought decides whether the Ingredient was bought, combined or available since the start
-              
+
             ID = id;
             GameCanvas = gameCanvas;
             CollectionFood = collection;
-            
+
             // Load the sprite and name
             this.LoadSprite();
             this.LoadName();
@@ -115,9 +115,9 @@ namespace CookingCraft
         }
 
         // Calls the Achievment
-        public Achievment CallAchievment(Game game)
+        public Achievment CallAchievment(Game game, ObservableCollection<Achievment> entrys)
         {
-            using(var reader = new StreamReader("Ressources/Achievements.csv"))
+            using (var reader = new StreamReader("Ressources/Achievements.csv"))
             {
                 // Read the file line by line
                 string? line;
@@ -128,14 +128,14 @@ namespace CookingCraft
                     // Check if the ID matches
                     if (int.Parse(parts[0]) == ID)
                     {
-                        Achievment achievment = new Achievment(int.Parse(parts[2]));
+                        Achievment achievment = new Achievment(int.Parse(parts[2]), game, entrys);
                         Log.Logger.Information($"Achievement was unlocked for Food with ID: {ID}.");
                         game.AchievmentIDs.Add(achievment.ID); // Add the Achievment ID to the Game
                         return achievment;
                     }
                 }
             }
-            return new Achievment(0); // Return a default Achievment if none was found
+            return new Achievment(); // Return a default Achievment if none was found
 
 
 

@@ -27,6 +27,8 @@ namespace CookingCraft
         private Point dragOffset;
         public bool initialised = false;
         public ObservableCollection<Food> entrys { get; set; } // ObservableCollection to hold the food items
+
+        public ObservableCollection<Achievment> AchievementEntries { get; set; } = new ObservableCollection<Achievment>(); // ObservableCollection to hold the food items
         public Game CookingGame { get; set; } // Game object to hold the game state
         public MainGame(Game game)
         {
@@ -34,15 +36,15 @@ namespace CookingCraft
             initialised = true;
 
             CookingGame = game; // Set the game object
-                                
-            
+
+
 
             // Set the DataContext of the ListView to the ObservableCollection
             // initialize ListView
             entrys = new ObservableCollection<Food>();
             ListViewGame.ItemsSource = entrys;
 
-            
+
 
             CookingGame.Initialise(entrys, GameCanvas, TextBoxKitchenname); // Initialise the game
 
@@ -58,7 +60,7 @@ namespace CookingCraft
                 Log.Logger.Information("Enter key pressed, unfocused current element.");
             }
 
-            
+
 
         }
 
@@ -229,7 +231,7 @@ namespace CookingCraft
                         if (food2 != null)
                         {
                             Food? result = draggedFood.Combine(food2, CookingGame);
-                            result.CallAchievment(CookingGame); // Achievement check
+                            result.CallAchievment(CookingGame, AchievementEntries); // Achievement check
                             if (result != null)
                             {
                                 // Kombiniertes Bild erzeugen
@@ -310,7 +312,7 @@ namespace CookingCraft
 
         private void ButtonAchievements_Click(object sender, RoutedEventArgs e)
         {
-            var achievementsWindow = new Achievements();
+            var achievementsWindow = new Achievements(AchievementEntries);
             achievementsWindow.Show();
         }
     }

@@ -21,9 +21,12 @@ namespace CookingCraft
     public partial class Achievements : Window
     {
 
-        public Achievements()
+        public Achievements(ObservableCollection<Achievment> entrys)
         {
             InitializeComponent();
+
+            // Set the DataContext of the ListView to the provided ObservableCollection
+            ListViewAchievements.DataContext = entrys;
         }
     }
 }

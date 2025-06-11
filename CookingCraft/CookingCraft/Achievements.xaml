@@ -6,7 +6,15 @@
         xmlns:local="clr-namespace:CookingCraft"
         mc:Ignorable="d"
         Title="Achievements" Height="450" Width="800">
-    <ListView>
-        
+    <ListView x:Name="ListViewAchievements" Grid.Column="0" Grid.Row="1" Background="LightGray">
+        <!--Template so theres a sprite to the left and text to the right-->
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <Image Source="{Binding Sprite}" Width="30" Height="30" Margin="0,0,10,0"/>
+                    <TextBlock Text="{Binding Description}" VerticalAlignment="Center" FontSize="16"/>
+                </StackPanel>
+            </DataTemplate>
+        </ListView.ItemTemplate>
     </ListView>
 </Window>
