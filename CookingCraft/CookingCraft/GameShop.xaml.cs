@@ -115,66 +115,68 @@ namespace CookingCraft
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if(game.Coins < 5)
+            if (game.Coins < 5)
             {
                 return;
             }
 
 
-            Button button = sender as Button;
 
-            // Letzte Ziffer im Button-Namen gibt den Slot an (Image1 -> index 0)
-            int index = int.Parse(button.Name.Last().ToString()) - 1;
-            Food selectedFood = ShopFood[index];
+                Button button = sender as Button;
 
-            // Gekauftes Item zur Liste hinzufügen
-            boughtFood.Add(new Food(selectedFood.ID, GameCanvas, CollectionFood, true));
+                // Letzte Ziffer im Button-Namen gibt den Slot an (Image1 -> index 0)
+                int index = int.Parse(button.Name.Last().ToString()) - 1;
+                Food selectedFood = ShopFood[index];
 
-            // Neues Item finden, das noch nicht gekauft oder im Shop ist
-            using (var reader = new StreamReader("Ressources/IngredientNames.csv"))
-            {
-                string line;
-                while ((line = reader.ReadLine()) != null)
+                // Gekauftes Item zur Liste hinzufügen
+                boughtFood.Add(new Food(selectedFood.ID, GameCanvas, CollectionFood, true));
+
+                // Neues Item finden, das noch nicht gekauft oder im Shop ist
+                using (var reader = new StreamReader("Ressources/IngredientNames.csv"))
                 {
-                    string[] parts = line.Split(';');
-                    int id = int.Parse(parts[0]);
-
-                    bool alreadyUsed = false;
-
-                    // Prüfen ob es bereits gekauft wurde
-                    foreach (var food in boughtFood)
+                    string line;
+                    while ((line = reader.ReadLine()) != null)
                     {
-                        if (food.ID == id)
-                        {
-                            alreadyUsed = true;
-                            break;
-                        }
-                    }
+                        string[] parts = line.Split(';');
+                        int id = int.Parse(parts[0]);
 
-                    // Prüfen ob es bereits im Shop ist
-                    if (!alreadyUsed)
-                    {
-                        for (int i = 0; i < ShopFood.Length; i++)
+                        bool alreadyUsed = false;
+
+                        // Prüfen ob es bereits gekauft wurde
+                        foreach (var food in boughtFood)
                         {
-                            if (ShopFood[i] != null && ShopFood[i].ID == id)
+                            if (food.ID == id)
                             {
                                 alreadyUsed = true;
                                 break;
                             }
                         }
-                    }
 
-                    if (!alreadyUsed)
-                    {
-                        // Neues Item setzen
-                        ShopFood[index] = new Food(id, GameCanvas, CollectionFood, false);
-                        game.Coins -= 5; // Abziehen der Coins für den Kauf
-                        break;
+                        // Prüfen ob es bereits im Shop ist
+                        if (!alreadyUsed)
+                        {
+                            for (int i = 0; i < ShopFood.Length; i++)
+                            {
+                                if (ShopFood[i] != null && ShopFood[i].ID == id)
+                                {
+                                    alreadyUsed = true;
+                                    break;
+                                }
+                            }
+                        }
+
+                        if (!alreadyUsed)
+                        {
+                            // Neues Item setzen
+                            ShopFood[index] = new Food(id, GameCanvas, CollectionFood, false);
+                            game.Coins -= 5; // Abziehen der Coins für den Kauf
+                            mainGame.UpdateCoinLabel();
+                            break;
+                        }
                     }
                 }
-            }
 
-            DrawShop();
+                DrawShop();
         }
     }
 }

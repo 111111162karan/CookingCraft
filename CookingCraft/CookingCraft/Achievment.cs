@@ -57,7 +57,8 @@ namespace CookingCraft
                 game.Coins += 5;
                 entries.Add(this);
             }
-                
+
+
         }
         public Achievment(int id, ObservableCollection<Achievment> entrys)
         {
@@ -68,8 +69,6 @@ namespace CookingCraft
             AddEntry(entrys);
 
         }
-
-
 
 
 

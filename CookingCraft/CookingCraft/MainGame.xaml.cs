@@ -31,8 +31,10 @@ namespace CookingCraft
         public ObservableCollection<Achievment> AchievementEntries { get; set; } = new ObservableCollection<Achievment>(); // ObservableCollection to hold the food items
         public Game CookingGame { get; set; } // Game object to hold the game state
         public MainGame(Game game)
+
         {
             InitializeComponent();
+            
             initialised = true;
 
             CookingGame = game; // Set the game object
@@ -47,6 +49,7 @@ namespace CookingCraft
 
 
             CookingGame.Initialise(entrys, GameCanvas, TextBoxKitchenname, AchievementEntries); // Initialise the game
+            UpdateCoinLabel();
 
         }
 
@@ -231,9 +234,17 @@ namespace CookingCraft
                         if (food2 != null)
                         {
                             Food? result = draggedFood.Combine(food2, CookingGame);
-                            result.CallAchievment(CookingGame, AchievementEntries); // Achievement check
+                            Achievment achievement = result.CallAchievment(CookingGame, AchievementEntries); // Achievement check
+                            
+                            if (achievement != null && achievement.IsUnlocked == false)
+                            {
+                                CookingGame.Coins += 5;  
+                            }
+                            UpdateCoinLabel();
                             if (result != null)
                             {
+                                
+                                
                                 // Kombiniertes Bild erzeugen
                                 Image combinedImage = new Image
                                 {
@@ -314,6 +325,10 @@ namespace CookingCraft
         {
             var achievementsWindow = new Achievements(AchievementEntries);
             achievementsWindow.Show();
+        }
+        public void UpdateCoinLabel()
+        {
+            LabelCoins.Content = $"💰{CookingGame.Coins}";
         }
     }
 }

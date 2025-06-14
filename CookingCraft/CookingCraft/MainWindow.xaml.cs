@@ -21,7 +21,7 @@ namespace CookingCraft
         public string saveFileName;
         public MainWindow()
         {
-
+            
             InitializeComponent();
             Log.Logger = new LoggerConfiguration()
                 .WriteTo.Console()
@@ -48,6 +48,7 @@ namespace CookingCraft
             MainFrame.Navigate(new MainGame(game));
             
             Log.Logger.Information($"Game loaded from save file: {saveFileName}");
+
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

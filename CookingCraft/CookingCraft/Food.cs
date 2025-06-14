@@ -32,6 +32,7 @@ namespace CookingCraft
 
         private ObservableCollection<Food> CollectionFood { get; set; }
 
+
         // Constructor
         public Food(int id, Canvas gameCanvas, ObservableCollection<Food> collection, bool bought = false)
         {
@@ -129,12 +130,12 @@ namespace CookingCraft
                     if (int.Parse(parts[0]) == ID)
                     {
                         Achievment achievment = new Achievment(int.Parse(parts[2]), game, entrys);
-                        Log.Logger.Information($"Achievement was unlocked for Food with ID: {ID}.");
+                        Log.Logger.Information($"Achievement was unlocked for Food with ID: {ID}.");                     
                         return achievment;
                     }
                 }
             }
-            return new Achievment(); // Return a default Achievment if none was found
+            return null; // Return a default Achievment if none was found
 
 
 
